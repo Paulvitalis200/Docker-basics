@@ -104,6 +104,8 @@ Commands
 - Once in the mysql terminal, you can create a database by typing: `CREATE database_name`
 - Select the new database name to query from it by typing: `USE database_name`
 - Create a table and link it to our database 
+<img width="837" alt="Screenshot 2020-02-03 at 14 38 07" src="https://user-images.githubusercontent.com/10106044/73651424-7417a700-4695-11ea-8ac2-344840dcd7d8.png">
+<img width="769" alt="Screenshot 2020-02-03 at 14 38 24" src="https://user-images.githubusercontent.com/10106044/73651425-74b03d80-4695-11ea-8bfb-997591a1ac49.png">
 - Next try to run a mysql image. We use the command `docker run --name=mysql-db mysql`
 - Database is uninitialized, password option is not specified and so on. We fix that by running: `docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=complexpassword -d -p 8001:3306 mysql`
 
@@ -116,11 +118,15 @@ Commands
 Connecting to database from Node.js
 - First we install the npm package for MYSQL: `npm install mysql`
 - Then we add the following code to the top of our app.js file:
+<img width="858" alt="Screenshot 2020-02-03 at 14 47 50" src="https://user-images.githubusercontent.com/10106044/73651426-74b03d80-4695-11ea-8254-bb83da3b878d.png">
 - Next we go to the terminal and run: `mysql -uroot -pcomplexpassword -h 0.0.0.0 -P 8001` and type the following after
+<img width="831" alt="Screenshot 2020-02-03 at 14 48 33" src="https://user-images.githubusercontent.com/10106044/73651428-74b03d80-4695-11ea-9abf-7043a15ae942.png">
 - Now we can run our app! `node app.js`
 
 Linking
 - To link a container to a database, We update the app.js to look as follows
+<img width="689" alt="Screenshot 2020-02-03 at 15 00 34" src="https://user-images.githubusercontent.com/10106044/73651673-f43e0c80-4695-11ea-9fde-bb4fe9e31823.png">
+
 - We build our image `docker build - t paulvitalis/node .`
 - Then we run our image `docker run -d -p 8000:3000 --name my-container --link mysql-db:mysql paulvitalis/node`
 - To see the output we run `docker logs my-container`
