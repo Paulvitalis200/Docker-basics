@@ -95,3 +95,32 @@ The whole command looks as follows:
 
 When we now add a route in our app or make a change and run the app, our changes will be reflected
 NB: Ensure you have nodemon running
+
+# 3. Linking and Databases
+
+Commands
+- Make sure that your mysql server is runnin. `brew services start`
+- Connect to a database by running `mysql -uroot`
+- Once in the mysql terminal, you can create a database by typing: `CREATE database_name`
+- Select the new database name to query from it by typing: `USE database_name`
+- Create a table and link it to our database 
+- Next try to run a mysql image. We use the command `docker run --name=mysql-db mysql`
+- Database is uninitialized, password option is not specified and so on. We fix that by running: `docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=complexpassword -d -p 8001:3306 mysql`
+
+- The problem we get that our container is up and running despite the error it threw 
+- So we bring down the container first using: `docker rm mysql-db`
+- Now we can run it again with the database set as above: `docker run -d -p 8001:3006 --name mysql-db -e MYSQL_ROOT_PASSWORD=complexpassword mysql`
+- To connect to it from the outside, we connect to it on 0.0.0.0:8001:
+  `mysql -uroot -pcomplexpassword -h 0.0.0.0 -P 8001`
+
+Connecting to database from Node.js
+- First we install the npm package for MYSQL: `npm install mysql`
+- Then we add the following code to the top of our app.js file:
+- Next we go to the terminal and run: `mysql -uroot -pcomplexpassword -h 0.0.0.0 -P 8001` and type the following after
+- Now we can run our app! `node app.js`
+
+Linking
+- To link a container to a database, We update the app.js to look as follows
+- We build our image `docker build - t paulvitalis/node .`
+- Then we run our image `docker run -d -p 8000:3000 --name my-container --link mysql-db:mysql paulvitalis/node`
+- To see the output we run `docker logs my-container`
