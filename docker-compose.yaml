@@ -1,0 +1,18 @@
+version: '3'
+services: 
+    product-service:
+        build: 
+            context: ./product-service
+        ports:
+            - "8000:3000"
+        environment:
+            - test=testvalue
+    inventory-service:
+        build:
+            context: ./inventory-service
+        ports:
+            - "8001:3000"
+        volumes:
+            - my-volume:/var/lib/data
+volumes:
+    my-volume:
