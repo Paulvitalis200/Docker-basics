@@ -31,6 +31,7 @@ Docker Commands
 - `docker images` - Lists all the running images
 - `docker stop [id]` - Stops a certain running container 
 - `docker exec -it [id] bash` - Starts a docker interactive bash of the specific container
+- `docker run --name sidehustle-image -p 4680:3000 -d paulvitalis/sidehustle-image` - Runs a docker image on the specified port in daemon mode
 
 
 # 2. VOLUMES
